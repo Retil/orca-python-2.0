@@ -6,7 +6,9 @@
     2. [Download ORCA-Python](#download-orca-python)
     3. [Algorithms Compilation](#algorithms-compilation)
     4. [Installation Testing](#installation-testing)
-3. [How to use ORCA-python](#how-to-use-orca-python)
+3. [Methods included](#methods-included)
+    1. [Ordinal regression algorithms](#Ordinal-regression-algorithms)
+4. [How to use ORCA-python](#how-to-use-orca-python)
     1. [Configuration Files](#configuration-files)
         1. [general-conf](#general-conf)
         2. [configurations](#configurations)
@@ -70,6 +72,20 @@ The way to run this test (and all experiments) is the following:
   $ python config.py with configurations/full_functionality_test.json -l ERROR
   ```
 
+# Methods included
+
+The [classifiers] folder includes the Python classes for the algorithms included and the original code (if applicable). The [configurations] folder includes different configuration files for running all the algorithms.
+
+## Ordinal regression algorithms
+
+* SVMOP: Binary ordinal decomposition methodology with SVM as base method, it imposes explicit weights over the patterns and uses a probabilistic framework for the prediction.
+
+* POM: Extension of the linear binary Logistic Regression methodology to Ordinal Classification by means of Cumulative Link Functions.
+
+* SVOREX: Ordinal formulation of the SVM paradigm, which computes discriminant parallel hyperplanes for the data and a set of thresholds by imposing explicit constraints in the optimization problem.
+
+* REDSVM: Augmented Binary Classification framework that solves the Ordinal Regression problem by a single binary model (SVM is applied in this case).
+
 
 # How to use ORCA-python
 
@@ -123,76 +139,116 @@ Most of this variables do have default values (specified in [config.py](https://
 this dictionary will contain, at the same time, one dictionary for each configuration to try over the datasets during the experiment. This is, a classifier with some specific hyper-parameters to tune. (Keep in mind, that if two or more configurations share the same name, the later ones will be omitted)
 
 ```
-"configurations": {
-
-    "SVM": {
-
-        "classifier": "sklearn.svm.SVC",
-        "parameters": {
-            "C": [0.001, 0.1, 1, 10, 100],
-            "gamma": [0.1, 1, 10]
-        }
-    },
+{
 
 
-    "SVMOP": {
+	"general_conf": {
 
-        "classifier": "OrdinalDecomposition",
-        "parameters": {
-            "dtype": "OrderedPartitions",
-            "decision_method": "frank_hall",
-            "base_classifier": "sklearn.svm.SVC",
-            "parameters": {
-                "C": [0.01, 0.1, 1, 10],
-                "gamma": [0.01, 0.1, 1, 10],
-                "probability": ["True"]
-            }
-
-        }
-    },
+		"basedir": "datasets/",
+		"datasets": ["tae", "balance-scale", "contact-lenses"],
+		"hyperparam_cv_nfolds": 3,
+		"jobs": 10,
+		"input_preprocessing": "std",
+		"output_folder": "my_runs/",
+		"metrics": ["ccr", "mae", "amae", "mze"],
+		"cv_metric": "mae"
+	},
 
 
-    "LR": {
+	"configurations": {
 
-        "classifier": "OrdinalDecomposition",
-        "parameters": {
-            "dtype": ["OrderedPartitions", "OneVsNext"],
-            "decision_method": "exponential_loss",
-            "base_classifier": "sklearn.linear_model.LogisticRegression",
-            "parameters": {
-                "C": [0.01, 0.1, 1, 10],
-                "penalty": ["l1","l2"]
-            }
+		"SVM": {
+		
+			"classifier": "sklearn.svm.SVC",
+			"parameters": {
+				"C": [0.001, 0.1, 1, 10, 100],
+				"gamma": [0.1, 1, 10]
+			}
+		},
 
-        }
-    },
-    
-    "REDSVM": {
 
-	"classifier": "REDSVM",
-	"parameters": {
-	    "t": 2,
-	    "c": [0.1, 1, 10],
-	    "g": [0.1, 1, 10],
-	    "r": 0,
-	    "m": 100,
-	    "e": 0.001,
-	    "h": 1
+		"SVMOP": {
+		
+			"classifier": "OrdinalDecomposition",
+			"parameters": {
+				"dtype": "ordered_partitions",
+				"decision_method": "frank_hall",
+				"base_classifier": "sklearn.svm.SVC",
+				"parameters": {
+					"C": [0.01, 0.1, 1, 10],
+					"gamma": [0.01, 0.1, 1, 10],
+					"probability": ["True"]
+				}
+
+			}
+		},
+
+
+		"LR": {
+		
+			"classifier": "OrdinalDecomposition",
+			"parameters": {
+				"dtype": ["ordered_partitions", "one_vs_next"],
+				"decision_method": "exponential_loss",
+				"base_classifier": "sklearn.linear_model.LogisticRegression",
+				"parameters": {
+					"solver": ["liblinear"],
+					"C": [0.01, 0.1, 1, 10],
+					"penalty": ["l1","l2"]
+				}
+
+			}
+		},
+		
+		"REDSVM": {
+
+			"classifier": "REDSVM",
+			"parameters": {
+			    "t": 2,
+				"c": [0.1, 1, 10],
+				"g": [0.1, 1, 10],
+				"r": 0,
+				"m": 100,
+				"e": 0.001,
+				"h": 1
+			}
+
+		},
+		
+		"SVOREX": {
+
+			"classifier": "SVOREX",
+			"parameters": {
+				"kernel_type": 0,
+				"c": [0.1, 1, 10],
+				"k": [0.1, 1, 10],
+				"t": 0.001
+			}
+
+		},
+
+		"SVMOP2": {
+	
+			"classifier": "SVMOP",
+			"parameters": {
+				"c": [0.1, 1, 10],
+				"g": [0.1, 1, 10]
+			}
+
+		},
+
+		"POM": {
+
+			"classifier": "POM",
+			"parameters": {
+				"alpha": 1
+			}
+
+		}
+
 	}
 
-    },
-    
-    "SVOREX": {
 
-	"classifier": "SVOREX",
-	"parameters": {
-	    "kernel_type": 0,
-	    "c": [0.1, 1, 10],
-	    "k": [0.1, 1, 10],
-	    "t": 0.001
-	}
-
-    }
 }
 ```
 
