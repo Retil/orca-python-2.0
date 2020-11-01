@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8c418351-2df8-4968-98e2-e3629e238a5d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1e2uEW7MeUvsFkkVK5hAbWZwmMm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/classifiers" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Universidad\TFG\TFG\orca-python-master\classifiers" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.pytest in fitprueba.py">
+    <configuration name="housing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="orca-python-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classifiers/mord-master/examples" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classifiers/mord-master/examples/housing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="orca-python-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classifiers/mord-master" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classifiers/mord-master/setup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in fitprueba.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="orca-python-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classifiers" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/classifiers/fitprueba.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_base.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="orca-python-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classifiers/mord-master/mord/datasets/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/classifiers/mord-master/mord/datasets/tests/test_base.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_fit.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="orca-python-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classifiers/mord-master/mord/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/classifiers/mord-master/mord/tests/test_fit.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest in fitprueba.py" />
+        <item itemvalue="Python tests.pytest in test_fit.py" />
+        <item itemvalue="Python tests.pytest in test_base.py" />
+        <item itemvalue="Python.housing" />
+        <item itemvalue="Python.setup" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c418351-2df8-4968-98e2-e3629e238a5d" name="Default Changelist" comment="" />
+      <created>1593531897755</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593531897755</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="450" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598267490008">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state x="450" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1598267490008" />
+    <state x="747" y="395" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1593627225395">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state x="747" y="395" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1593627225395" />
+    <state x="776" y="295" key="FileChooserDialogImpl" timestamp="1598268937632">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state x="776" y="295" key="FileChooserDialogImpl/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1598268937632" />
+    <state width="1827" height="256" key="GridCell.Tab.0.bottom" timestamp="1598878070321">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state width="1827" height="256" key="GridCell.Tab.0.bottom/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1598878070321" />
+    <state width="1827" height="256" key="GridCell.Tab.0.center" timestamp="1598878070321">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state width="1827" height="256" key="GridCell.Tab.0.center/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1598878070321" />
+    <state width="1827" height="256" key="GridCell.Tab.0.left" timestamp="1598878070320">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state width="1827" height="256" key="GridCell.Tab.0.left/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1598878070320" />
+    <state width="1827" height="256" key="GridCell.Tab.0.right" timestamp="1598878070321">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state width="1827" height="256" key="GridCell.Tab.0.right/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1598878070321" />
+    <state x="527" y="183" width="1044" height="831" key="SettingsEditor" timestamp="1598876840239">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state x="527" y="183" width="1044" height="831" key="SettingsEditor/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1598876840239" />
+    <state x="615" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1598873500362">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state x="615" y="364" key="com.intellij.ide.util.TipDialog/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1598873500362" />
+    <state x="649" y="129" width="694" height="822" key="find.popup" timestamp="1593629116899">
+      <screen x="73" y="0" width="1847" height="1080" />
+    </state>
+    <state x="649" y="129" width="694" height="822" key="find.popup/1993.8.1847.1080/73.0.1847.1080@73.0.1847.1080" timestamp="1593629116899" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/classifiers/SVMOP/python/commonutil.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/classifiers/libsvmRank/grid.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

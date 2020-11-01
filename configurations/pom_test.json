@@ -1,0 +1,30 @@
+{
+
+
+	"general_conf": {
+
+		"basedir": "datasets/",
+		"datasets": ["tae", "balance-scale", "contact-lenses"],
+		"input_preprocessing": "std",
+		"jobs": 10,
+		"output_folder": "my_runs/",
+		"metrics": ["ccr", "mae", "mze"]
+
+	},
+
+
+	"configurations": {
+
+		"POM": {
+
+			"classifier": "POM",
+			"parameters": {
+				"alpha": 1
+			}
+
+		}
+
+	}
+
+
+}
