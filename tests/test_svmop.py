@@ -37,9 +37,9 @@ class TestSvmop(unittest.TestCase):
 								ospath.join(self.dataset_path,"expectedPredictions.2")
 								]
 
-		classifiers = [SVMOP(g=0.1, c=0.1),
-					SVMOP(g=1, c=1),
-					SVMOP(g=10, c=10)
+		classifiers = [SVMOP(gamma=0.1, C=0.1),
+					SVMOP(gamma=1, C=1),
+					SVMOP(gamma=10, C=10)
 					]
 
 		#Test execution and verification
@@ -57,7 +57,7 @@ class TestSvmop(unittest.TestCase):
 		y_train_broken = self.train_file[0:(-1),(-1)]
 
 		#Test execution and verification
-		classifier = SVMOP(g=0.1, c=1)
+		classifier = SVMOP(gamma=0.1, C=1)
 		with self.assertRaises(ValueError):
 				model = classifier.fit(X_train, y_train_broken)
 				self.assertIsNone(model, "The SVMOP fit method doesnt return Null on error")
@@ -79,12 +79,30 @@ class TestSvmop(unittest.TestCase):
 		X_train = self.train_file[:,0:(-1)]
 		y_train = self.train_file[:,(-1)]
 
-		classifier = SVMOP(g=0.1, c=1)
+		classifier = SVMOP(gamma=0.1, C=1)
 		classifier.fit(X_train, y_train)
 
 		#Test execution and verification
 		with self.assertRaises(ValueError):
 			classifier.predict([])
+
+	def test_svmop_fit_not_valid_parameter(self):
+
+		#Test preparation
+		X_train = self.train_file[:,0:(-1)]
+		y_train = self.train_file[:,(-1)]
+
+		classifiers = [SVMOP(C=-1, gamma=1),
+					SVMOP(C=0, gamma=-1)]
+		
+		error_msgs = ["C <= 0",
+					"gamma < 0"]
+
+		#Test execution and verification
+		for classifier, error_msg in zip(classifiers, error_msgs):
+			with self.assertRaisesRegex(ValueError, error_msg):
+				model = classifier.fit(X_train, y_train)
+				self.assertIsNone(model, "The SVMOP fit method doesnt return Null on error")
 
 
 if __name__ == '__main__':

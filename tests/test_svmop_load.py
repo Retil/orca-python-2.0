@@ -45,8 +45,8 @@ class TestSvmopLoad(unittest.TestCase):
 
 			"classifier": "SVMOP",
 			"parameters": {
-				"c": values,
-				"g": values
+				"C": values,
+				"gamma": values
 			}
 
 		}

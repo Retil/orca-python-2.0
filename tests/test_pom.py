@@ -34,7 +34,7 @@ class TestPom(unittest.TestCase):
 
 		expected_predictions = [ospath.join(self.dataset_path,"expectedPredictions.0")]
 
-		classifiers = [POM(alpha=0.33)]
+		classifiers = [POM(alpha=0.33, base_classifier = False)]
 
 		#Test execution and verification
 		for expected_prediction, classifier in zip(expected_predictions, classifiers):
@@ -51,7 +51,7 @@ class TestPom(unittest.TestCase):
 		y_train_broken = self.train_file[0:(-1),(-1)]
 
 		#Test execution and verification
-		classifier = POM(alpha=1)
+		classifier = POM(alpha=1, base_classifier = False)
 		with self.assertRaises(ValueError):
 				model = classifier.fit(X_train, y_train_broken)
 				self.assertIsNone(model, "The POM fit method doesnt return Null on error")
@@ -73,7 +73,7 @@ class TestPom(unittest.TestCase):
 		X_train = self.train_file[:,0:(-1)]
 		y_train = self.train_file[:,(-1)]
 
-		classifier = POM(alpha=1)
+		classifier = POM(alpha=1, base_classifier = False)
 		classifier.fit(X_train, y_train)
 
 		#Test execution and verification

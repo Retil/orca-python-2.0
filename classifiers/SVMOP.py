@@ -1,22 +1,22 @@
 import scipy
-from libsvmWeight.python.svmutil import *
 import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import unique_labels
-
+from sklearn import svm
 
 class SVMOP(BaseEstimator, ClassifierMixin):
 	"""
 	SVMOP Support vector machines using Frank & Hall method for ordinal
-	regression (by binary decomposition). This class uses libsvm-weights
-	for SVM training (https://www.csie.ntu.edu.tw/~cjlin/libsvm).
+	regression (by binary decomposition). This class uses SVC for 
+	SVM training 
+	(https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html).
+
 	  SVMOP methods:
-		 fitpredict               - runs the corresponding algorithm,
-									  fitting the model and testing it in a dataset.
 		 fit                        - Fits a model from training data
 		 predict                    - Performs label prediction
-	
+		 computeWeight              - Compute the weight for training
+
 	  References:
 		[1] E. Frank and M. Hall, "A simple approach to ordinal classification"
 			in Proceedings of the 12th European Conference on Machine Learning,
@@ -33,17 +33,16 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 			2016
 			http://dx.doi.org/10.1109/TKDE.2015.2457911
 
-	"-g gamma : set gamma in kernel function (default 1/num_features)\n"
-	"-c cost : set the parameter C of C-SVC, epsilon-SVR, and nu-SVR (default 1)\n"
+	"-gamma gamma : set gamma in kernel function (default 1/num_features)\n"
+	"-C cost : Regularization parameter. The strength of the regularization is 
+			   inversely proportional to C."
 
 	"""
 
 	# Set parameters values
-	def __init__(self, g=1, c=1):
-
-		self.g = g
-		self.c = c
-
+	def __init__(self, C= 1, gamma = 1 ):
+		self.C = C
+		self.gamma = gamma
 
 	def fit(self, X, y):
 		"""
@@ -67,20 +66,16 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 
 		# Check that X and y have correct shape
 		X, y = check_X_y(X, y)
+
+		self.X_ = X
+		self.y_ = y
+
 		# Store the classes seen during fit
 		self.classes_ = np.unique(y)
 
-		# Set the default g value if necessary
-		if self.g == None:
-			self.g = 1 / np.size(X, 1)
-		
-		# Fit the model
-		options = "-b 1 -t 2 -c {} -g {} -q".format(str(self.c), str(self.g))
-		#self.classifier_ = svm.fit(y.tolist(), X.tolist(), options)
-
-
 		# Give each train input its corresponding output label
 		# for each binary classifier
+
 		coding_matrix = np.triu((-2 * np.ones(len(self.classes_) - 1))) + 1
 		coding_matrix = np.vstack([coding_matrix, np.ones((1, len(self.classes_) -1))])
 
@@ -90,8 +85,11 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 		# Fitting n_targets - 1 classifiers
 		for n in range(len(class_labels[0,:])):
 
-			estimator = svm_train( np.ravel(class_labels[np.where(class_labels[:,n] != 0), n].T) , 
-								   X[np.where(class_labels[:,n] != 0)], options)
+			weightsTrain = self.computeWeight(n, y)
+
+			estimator = svm.SVC(C = self.C, gamma = self.gamma, probability = True, kernel = 'rbf', )
+			estimator.fit(X[np.where(class_labels[:,n] != 0)],
+						  np.ravel(class_labels[np.where(class_labels[:,n] != 0), n].T), sample_weight = weightsTrain)
 
 			self.classifiers_.append(estimator)
 
@@ -120,28 +118,9 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 		# Input validation
 		X = check_array(X)
 
-
 		# Getting predicted labels for dataset from each classifier
-		'''
-		auxarray = np.array(list(map(lambda c: svm_predict([], X, c, '-b 1'), self.classifiers_)), list).T
-		print(auxarray)
-		predictions = []
-		for i in range(len(self.classes_)-1):
-			newarray = auxarray[2,i]
-			for n in range(len(newarray)):
-				untuple1, untuple2 = newarray[n]
-				predictions.append([untuple1,untuple2])
-		predictions = np.array(predictions)
-		'''
-		probTs = []
-		for n in range(len(self.classifiers_)):
-			p_val, p_acc, prediction = svm_predict([], X, self.classifiers_[n], '-b 1')
-			#prediction = list(prediction)
-			probTs.append(prediction)
-
-		predictions = np.array(probTs).T
-		predictions = predictions[0,:]
-
+		predictions = np.array(list(map(lambda c: c.predict_proba(X)[:,1], self.classifiers_))).T
+		
 		# Probability for each pattern of dataset
 		predicted_proba_y = np.empty([(predictions.shape[0]), (predictions.shape[1] + 1)])
 
