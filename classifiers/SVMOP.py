@@ -44,6 +44,7 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 		self.C = C
 		self.gamma = gamma
 
+
 	def fit(self, X, y):
 		"""
 		Fit the model with the training data
@@ -96,6 +97,7 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 		#self.classifier_ = svm_train(y.tolist(), X.tolist(), options)
 		return self
 
+
 	def predict(self, X):
 		"""
 		Performs classification on samples in X
@@ -120,22 +122,13 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 
 		# Getting predicted labels for dataset from each classifier
 		predictions = np.array(list(map(lambda c: c.predict_proba(X)[:,1], self.classifiers_))).T
-		
-		# Probability for each pattern of dataset
-		predicted_proba_y = np.empty([(predictions.shape[0]), (predictions.shape[1] + 1)])
 
-		# Probabilities of each set to belong to the first ordinal class
-		predicted_proba_y[:,0] = 1 - predictions[:,0]
-
-		# Probabilities for the central classes
-		predicted_proba_y[:,1:-1] = predictions[:,:-1] - predictions[:,1:]
-
-		# Probabilities of each set to belong to the last class
-		predicted_proba_y[:,-1] = predictions[:,-1]
+		predicted_proba_y = self.binaryDecomposition(predictions)
 
 		predicted_y = self.classes_[np.argmax(predicted_proba_y, axis=1)]
 
 		return predicted_y
+
 
 	def computeWeight(self, p, targets):
 		"""
@@ -167,3 +160,42 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 		weight = [i if i <= p else (i-p)/summ for i in weight]
 
 		return weight
+
+
+	def binaryDecomposition(seld, predicted):
+		"""
+		Returns the probability for each pattern of dataset to
+		belong to each one of the original targets.	Transforms from n-1
+		subproblems to the original ordinal problem with n targets.
+
+			References:
+		[2] W. Waegeman and L. Boullart, "An ensemble of weighted support
+			vector machines for ordinal regression", International Journal
+			of Computer Systems Science and Engineering, vol. 3, no. 1,
+			pp. 47–51, 2009.
+
+		Parameters
+		----------
+
+		predicted: array, shape (n_samples, n_targets-1)
+
+		Returns
+		-------
+
+		predicted_proba_y: array, shape (n_samples, n_targets)
+			Class labels predicted for samples in dataset X.
+		"""
+
+		# Probability for each pattern of dataset
+		predicted_proba_y = np.empty([(predictions.shape[0]), (predictions.shape[1] + 1)])
+
+		# Probabilities of each set to belong to the first ordinal class
+		predicted_proba_y[:,0] = 1 - predictions[:,0]
+
+		# Probabilities for the central classes
+		predicted_proba_y[:,1:-1] = predictions[:,:-1] - predictions[:,1:]
+
+		# Probabilities of each set to belong to the last class
+		predicted_proba_y[:,-1] = predictions[:,-1]
+
+		return predicted_proba_y
