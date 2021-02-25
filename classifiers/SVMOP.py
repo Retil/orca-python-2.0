@@ -162,7 +162,7 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 		return weight
 
 
-	def binaryDecomposition(seld, predicted):
+	def binaryDecomposition(seld, predictions):
 		"""
 		Returns the probability for each pattern of dataset to
 		belong to each one of the original targets.	Transforms from n-1

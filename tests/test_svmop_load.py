@@ -34,7 +34,6 @@ class TestSvmopLoad(unittest.TestCase):
 					"datasets": ["automobile", "balance-scale", "bondrate", "car", "contact-lenses", "ERA", "ESL", "eucalyptus", "LEV", "newthyroid",
 								 "pasture", "squash-stored", "squash-unstored", "SWD", "tae", "toy", "winequality-red"],
 					"input_preprocessing": "std",
-					"hyperparam_cv_nfolds": 3,
 					"jobs": 10,
 					"output_folder": "my_runs/",
 					"metrics": ["ccr", "mae", "amae", "mze"],

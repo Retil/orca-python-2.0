@@ -4,7 +4,7 @@
 	"general_conf": {
 
 		"basedir": "datasets/",
-		"datasets": ["tae", "balance-scale", "contact-lenses"],
+		"datasets": ["tae", "balance-scale", "contact-lenses", "toy"],
 		"input_preprocessing": "std",
 		"jobs": 10,
 		"output_folder": "my_runs/",
@@ -19,7 +19,7 @@
 
 			"classifier": "POM",
 			"parameters": {
-				"alpha": 1,
+				"alpha": 0.33,
 				"base_classifier" : true
 			}
 
