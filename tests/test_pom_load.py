@@ -3,12 +3,18 @@ from os import path as ospath
 import ntpath
 from shutil import rmtree
 import gc
+import re
+from datetime import date, datetime
+import time
+from os import listdir
+from os.path import isfile, join
 
 import unittest
 
 import numpy as np
 from sklearn.model_selection import GridSearchCV
 from  sklearn import preprocessing
+import pathlib as pl
 
 syspath.append('..')
 syspath.append(ospath.join('..', 'classifiers'))
@@ -28,7 +34,7 @@ class TestPomLoad(unittest.TestCase):
 
 	# Parameters values for experiments
 	values = [-1, -0.33, 0, 0.33, 1, 5 ]
-	valuesBase = ["true", "false"]
+	valuesBase = ["at", "it"]
 	
 	# Declaring a simple configuration
 	general_conf = {"basedir": dataset_path,
@@ -52,7 +58,7 @@ class TestPomLoad(unittest.TestCase):
 
 		}
 	}
-		
+	
 	def test_pom_load(self):
 		gc.set_debug(gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_SAVEALL)
 		
@@ -69,7 +75,27 @@ class TestPomLoad(unittest.TestCase):
 
 		#Delete all the test results after load test
 		rmtree("my_runs")
+	
+	def test_pom_file_exist(self):
 
+		print("\n")
+		print("###############################")
+		print("POM file exist test")
+		print("###############################")
+
+		# Declaring Utilities object and running the experiment
+		util = Utilities(self.general_conf, self.configurations, verbose=True)
+		util.run_experiment()
+		# Saving results information
+		util.write_report()
+		
+		report_path = ospath.join(ospath.dirname(ospath.abspath(__file__)), "my_runs")
+		
+		if not ospath.isdir(report_path):
+			raise AssertionError("File does not exist: %s" % str(report_path))
+
+		#Delete all the test results after load test
+		rmtree("my_runs")
 
 if __name__ == '__main__':
 	unittest.main()

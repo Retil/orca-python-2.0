@@ -32,7 +32,7 @@ class TestPomCompare(unittest.TestCase):
 
 	# Parameters values for experiments
 	values = [-1, -0.33, 0, 0.33, 1, 5 ]
-	valuesBase = [True, False]
+	valuesBase = ["at", "it"]
 	
 	# Declaring a simple configuration for mze metric
 	general_conf_mze = {"basedir": dataset_path,
@@ -73,7 +73,7 @@ class TestPomCompare(unittest.TestCase):
 		
 		print("\n")
 		print("###############################")
-		print("   POM load test MZE metric")
+		print("   POM compare test MZE metric")
 		print("###############################")
 
 		# Declaring Utilities object and running the experiment
@@ -99,7 +99,7 @@ class TestPomCompare(unittest.TestCase):
 
 		print("\n")
 		print("###############################")
-		print("   POM load test MAE metric")
+		print("   POM compare test MAE metric")
 		print("###############################")
 
 		# Declaring Utilities object and running the experiment
@@ -202,20 +202,19 @@ class TestPomCompare(unittest.TestCase):
 		[print('{0} : {1} \t {2}'.format(names[i], mae[i], maeOrca[i])) for i in range(len(names))]
 		print('--------------------------')
 
-		print('mze Python\ORCA:')
+		print('mze Python|ORCA:')
 		[print('{0} : {1} \t {2}'.format(names[i], mze[i], mzeOrca[i])) for i in range(len(names))]
 		print('--------------------------')
-
 
 		#Make the graphs of the information obtained 
 		fig = px.line(x=names, y=maeOrca, color=px.Constant("MAE ORCA"),
              labels=dict(x="DatasetName", y="MAE Mean Value", color="Metric"))
-		fig.add_bar(x=names, y=mae, name="MAE ORCA-Python")
+		fig.add_scatter(x=names, y=mae, mode='lines', name="MAE ORCA-Python")
 		fig.show()
 
 		fig = px.line(x=names, y=mzeOrca, color=px.Constant("MZE ORCA"),
              labels=dict(x="DatasetName", y="MZE Mean Value", color="Metric"))
-		fig.add_bar(x=names, y=mze, name="MZE ORCA-Python")
+		fig.add_scatter(x=names, y=mze, mode='lines', name="MZE ORCA-Python")
 		fig.show()
 
 

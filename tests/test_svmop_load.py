@@ -34,6 +34,7 @@ class TestSvmopLoad(unittest.TestCase):
 					"datasets": ["automobile", "balance-scale", "bondrate", "car", "contact-lenses", "ERA", "ESL", "eucalyptus", "LEV", "newthyroid",
 								 "pasture", "squash-stored", "squash-unstored", "SWD", "tae", "toy", "winequality-red"],
 					"input_preprocessing": "std",
+					"hyperparam_cv_nfolds": 3,
 					"jobs": 10,
 					"output_folder": "my_runs/",
 					"metrics": ["ccr", "mae", "amae", "mze"],
@@ -64,6 +65,27 @@ class TestSvmopLoad(unittest.TestCase):
 		util.run_experiment()
 		# Saving results information
 		util.write_report()
+
+		#Delete all the test results after load test
+		rmtree("my_runs")
+
+	def test_svmop_file_exist(self):
+
+		print("\n")
+		print("###############################")
+		print("SVMOP file exist test")
+		print("###############################")
+
+		# Declaring Utilities object and running the experiment
+		util = Utilities(self.general_conf, self.configurations, verbose=True)
+		util.run_experiment()
+		# Saving results information
+		util.write_report()
+		
+		report_path = ospath.join(ospath.dirname(ospath.abspath(__file__)), "my_runs")
+		
+		if not ospath.isdir(report_path):
+			raise AssertionError("File does not exist: %s" % str(report_path))
 
 		#Delete all the test results after load test
 		rmtree("my_runs")

@@ -93,8 +93,6 @@ class SVMOP(BaseEstimator, ClassifierMixin):
 						  np.ravel(class_labels[np.where(class_labels[:,n] != 0), n].T), sample_weight = weightsTrain)
 
 			self.classifiers_.append(estimator)
-
-		#self.classifier_ = svm_train(y.tolist(), X.tolist(), options)
 		return self
 
 

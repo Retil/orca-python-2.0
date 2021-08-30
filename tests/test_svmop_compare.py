@@ -61,7 +61,7 @@ class TestSVMOPCompare(unittest.TestCase):
 		
 		print("\n")
 		print("###############################")
-		print("SVMOP load test")
+		print("SVMOP compare test")
 		print("###############################")
 
 		# Declaring Utilities object and running the experiment
@@ -140,15 +140,29 @@ class TestSVMOPCompare(unittest.TestCase):
 		maeOrca = [dataObtainRegresion[1, 1], dataObtainReal[2, 1], dataObtainRegresion[2, 1], dataObtainReal[3, 1], dataObtainRegresion[3, 1],
 					dataObtainReal[0, 1], dataObtainReal[5, 1], dataObtainRegresion[0, 1], dataObtainReal[1,1], dataObtainReal[4,1]]
 
+		#print results
+		print("\n")
+		print("###############################")
+		print("   SVMOP results")
+		print("###############################")
+
+		print('mae Python|ORCA:')
+		[print('{0} : {1} \t {2}'.format(names[i], mae[i], maeOrca[i])) for i in range(len(names))]
+		print('--------------------------')
+
+		print('mze Python|ORCA:')
+		[print('{0} : {1} \t {2}'.format(names[i], mze[i], mzeOrca[i])) for i in range(len(names))]
+		print('--------------------------')
+
 		#Make the graphs of the information obtained 
 		fig = px.line(x=names, y=maeOrca, color=px.Constant("MAE ORCA"),
              labels=dict(x="DatasetName", y="MAE Mean Value", color="Metric"))
-		fig.add_bar(x=names, y=mae, name="MAE ORCA-Python")
+		fig.add_scatter(x=names, y=mae, mode='lines', name="MAE ORCA-Python")
 		fig.show()
 
 		fig = px.line(x=names, y=mzeOrca, color=px.Constant("MZE ORCA"),
              labels=dict(x="DatasetName", y="MZE Mean Value", color="Metric"))
-		fig.add_bar(x=names, y=mze, name="MZE ORCA-Python")
+		fig.add_scatter(x=names, y=mze, mode='lines', name="MZE ORCA-Python")
 		fig.show()
 		
 		#Delete all the test results after load test

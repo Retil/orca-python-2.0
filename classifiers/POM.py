@@ -33,15 +33,15 @@ class POM(BaseEstimator, ClassifierMixin):
 			Regularization parameter. Zero is no regularization, higher values
 			increate the squared l2 regularization.
 
-		base_classifier: bool
+		base_classifier: string
 			Mord offers 2 implementations for this algorithm, 
-			True: implements the ordinal logistic model All-Threshold variant
-			False: implements the ordinal logistic model Immediate-Threshold variant
+			at: implements the ordinal logistic model All-Threshold variant
+			it: implements the ordinal logistic model Immediate-Threshold variant
 
 	'''
 
 	# Set parameters values
-	def __init__(self, alpha=1., base_classifier = False):
+	def __init__(self, alpha=1., base_classifier = "at"):
 		self.alpha = alpha
 		self.base_classifier = base_classifier
 
@@ -73,9 +73,9 @@ class POM(BaseEstimator, ClassifierMixin):
 		self.classes_ = unique_labels(y)
 
 		# Fit the model
-		if self.base_classifier:
+		if self.base_classifier == "at":
 			self.classifier_ = mord.LogisticAT(alpha = self.alpha)
-		else:
+		elif self.base_classifier == "it":
 			self.classifier_ = mord.LogisticIT(alpha = self.alpha)
 
 		self.classifier_.fit(X ,y)

@@ -22,7 +22,7 @@ class TestPom(unittest.TestCase):
 
 	train_file = np.loadtxt(ospath.join(dataset_path,"train.0"))
 	test_file = np.loadtxt(ospath.join(dataset_path,"test.0"))
-	'''
+	
 	def test_pom_fit_correct(self):
 		#Check if this algorithm can correctly classify a toy problem.
 		
@@ -34,15 +34,15 @@ class TestPom(unittest.TestCase):
 
 		expected_predictions = [ospath.join(self.dataset_path,"expectedPredictions.0")]
 
-		classifiers = [POM(alpha=0.33, base_classifier = False)]
+		classifiers = [POM(alpha=1, base_classifier = "at")]
 
 		#Test execution and verification
 		for expected_prediction, classifier in zip(expected_predictions, classifiers):
 			classifier.fit(X_train, y_train)
 			predictions = classifier.predict(X_test)
 			expected_prediction = np.loadtxt(expected_prediction)
-			npt.assert_array_almost_equal(x= predictions,y= expected_prediction, decimal=1,err_msg="The prediction doesnt match with the desired values")
-	'''
+			npt.assert_array_almost_equal(x= predictions,y= expected_prediction, decimal=-1,err_msg="The prediction doesnt match with the desired values")
+	
 	def test_pom_fit_not_valid_data(self):
 		#Test preparation
 		X_train = self.train_file[:,0:(-1)]
@@ -51,7 +51,7 @@ class TestPom(unittest.TestCase):
 		y_train_broken = self.train_file[0:(-1),(-1)]
 
 		#Test execution and verification
-		classifier = POM(alpha=1, base_classifier = False)
+		classifier = POM(alpha=1, base_classifier = "at")
 		with self.assertRaises(ValueError):
 				model = classifier.fit(X_train, y_train_broken)
 				self.assertIsNone(model, "The POM fit method doesnt return Null on error")
@@ -73,7 +73,7 @@ class TestPom(unittest.TestCase):
 		X_train = self.train_file[:,0:(-1)]
 		y_train = self.train_file[:,(-1)]
 
-		classifier = POM(alpha=1, base_classifier = False)
+		classifier = POM(alpha=1, base_classifier = "it")
 		classifier.fit(X_train, y_train)
 
 		#Test execution and verification

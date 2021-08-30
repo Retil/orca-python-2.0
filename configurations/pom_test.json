@@ -20,7 +20,7 @@
 			"classifier": "POM",
 			"parameters": {
 				"alpha": 0.33,
-				"base_classifier" : true
+				"base_classifier" : "at"
 			}
 
 		}
